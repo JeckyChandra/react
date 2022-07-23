@@ -8,22 +8,19 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-//File import sendiri
-import HomePage from './component/HomePage';
-import Login from './component/Login';
+
+//Coba coba
+import {createStore, applyMiddleware } from 'redux';
+import {Provider} from 'react-redux';
+// import reducer from "./reducers";
+import thunk from 'redux-thunk';
+import RouterComponent from './routes/route';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
-  {/* <Header/> */}
-    <Routes>
-      <Route path="/" element={<App />}>
-      <Route path="home" element={<HomePage />}/>
-      <Route path="login" element={<Login />}/>
-        
-      </Route>
-    </Routes>
-  </BrowserRouter>
+  <React.StrictMode>
+    <RouterComponent/>
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

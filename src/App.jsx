@@ -6,6 +6,7 @@ import './component/header/header.css'
 import './component/footer/footer.css'
 
 
+
 function App() {
   return (
     <div>
@@ -15,6 +16,7 @@ function App() {
           <nav>
             <Link to="/home">Home</Link>
             <Link to="/login">Login</Link>
+            <Link to="/register">Register</Link>
           </nav>
         </div>
       </header>
