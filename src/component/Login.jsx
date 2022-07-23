@@ -1,77 +1,85 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { instances } from '../component/axios/index.js';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { instances } from "../component/axios/index.js";
+import "./design/login.css";
 
 const Login = () => {
-	const navigate = useNavigate();
+  const navigate = useNavigate();
 
-	const [loading, setLoading] = useState(false);
-	const [form, setForm] = useState({
-		email: '',
-		password: '',
-	});
-	const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
+  const [errorMessage, setErrorMessage] = useState("");
 
-	useEffect(() => {
-		const accessToken = localStorage.getItem('access_token');
-		if (accessToken) {
-			navigate('/');
-		}
-	}, []);
+  useEffect(() => {
+    const accessToken = localStorage.getItem("access_token");
+    if (accessToken) {
+      navigate("/home");
+    }
+  }, []);
 
-	const onSubmit = async (e) => {
-		e.preventDefault();
-		setLoading(true);
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
 
-		try {
-			const sendData = await instances.post('user/login', form);
+    try {
+      const sendData = await instances.post("user/login", form);
 
-			console.log(sendData, '<<< resp');
+      console.log(sendData, "<<< resp");
 
-			if (sendData.data.message == 'success') {
-				localStorage.setItem('access_token', sendData.data.token);
-				navigate('/');
-			}
+      if (sendData.data.message == "success") {
+        localStorage.setItem("access_token", sendData.data.token);
+        navigate("/");
+      }
+    } catch (error) {
+      setErrorMessage(error.message);
+    }
 
-		} catch (error) {
-			setErrorMessage(error.message);
-		}
+    setLoading(false);
+  };
 
-		setLoading(false);
-	};
+  const onChange = (event) => {
+    const name = event.currentTarget.name;
+    const value = event.currentTarget.value;
 
-	const onChange = (event) => {
-		const name = event.currentTarget.name;
-		const value = event.currentTarget.value;
+    setForm({ ...form, [name]: value });
+  };
 
-		setForm({ ...form, [name]: value });
-	};
+  return (
+    <div className="container">
+      <div className="card">
+	  <form onSubmit={onSubmit}>
+        <h1>Login</h1>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Email"
+          onChange={onChange}
+        />
+        <br />
+        <br />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+          onChange={onChange}
+        />
+        <br />
+        <br />
 
-	return (
-		<div className='container'>
-			<h1>Login</h1>
-
-			<form onSubmit={ onSubmit }>
-				<label htmlFor="email">Email</label>
-				<br />
-				<input type="email" name='email' id='email' onChange={ onChange } />
-				<br /><br />
-
-				<label htmlFor="password">Password</label>
-				<br />
-				<input type="password" name='password' id='password' onChange={ onChange } />
-				<br /><br />
-
-				{ loading
-					?
-					<div>Loading...</div>
-					:
-					<input type="submit" value="Login" />
-				}
-			</form>
-		</div>
-	);
+        {loading ? (
+          <div>Loading...</div>
+        ) : (
+          <input type="submit" value="Login" />
+        )}
+      </form>
+	  </div>
+    </div>
+  );
 };
-
 
 export default Login;

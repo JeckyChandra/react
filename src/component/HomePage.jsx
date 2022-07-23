@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { HeaderLogOut } from './header/header';
 
 export default function HomePage() {
 	const navigate = useNavigate();
@@ -7,13 +8,16 @@ export default function HomePage() {
     useEffect(() => {
 		const accessToken = localStorage.getItem('access_token');
 		if (accessToken) {
-			navigate('/');
+			navigate('/home');
 		}
 	}, []);
 
     return (
-        <main style={{ padding: "200px" }}>
+        <div>
+            <HeaderLogOut/>
+            <main>
             <h2 style={{display:"flex"}}>Home Page</h2>
         </main>
+        </div>
     );
 }

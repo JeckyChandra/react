@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { instances } from '../component/axios/index.js';
+import './design/register.css';
 
 const Register = () => {
 	const navigate = useNavigate();
@@ -17,7 +18,7 @@ const Register = () => {
 	useEffect(() => {
 		const accessToken = localStorage.getItem('access_token');
 		if (accessToken) {
-			navigate('/');
+			navigate('/home');
 		}
 	}, []);
 
@@ -54,29 +55,23 @@ const Register = () => {
 
 	return (
 		<div className='container'>
-			<h1>Register</h1>
 
 			<h5>{ errorMessage }</h5>
 
+
+			<div className='card'>
 			<form onSubmit={ onSubmit }>
+			<h1>Register</h1>
 
-				<label htmlFor="name">Name</label>
-				<br />
-				<input type="text" name='name' id='name' onChange={ onChange } />
+				<input type="text" name='name' id='name' placeholder='Name' onChange={ onChange } />
 				<br /><br />
 
-				<label htmlFor="email">Email</label>
-				<br />
-				<input type="email" name='email' id='email' onChange={ onChange } />
+				<input type="email" name='email' id='email' placeholder='Email' onChange={ onChange } />
 				<br /><br />
 
-				<label htmlFor="password">Password</label>
-				<br />
-				<input type="password" name='password' id='password' onChange={ onChange } />
+				<input type="password" name='password' id='password' placeholder='Password' onChange={ onChange } />
 				<br /><br />
 
-				<label htmlFor="role">Role</label>
-				<br />
 				<select name="role" id="role" onChange={ onChange } >
 					<option value="">Select Role</option>
 					<option value="admin">Admin</option>
@@ -92,6 +87,7 @@ const Register = () => {
 				}
 
 			</form>
+			</div>
 
 		</div>
 	);
