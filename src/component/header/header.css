@@ -1,0 +1,99 @@
+.header-login-signup {
+    background-color: #ffffff;
+    box-shadow: 0 1px 1px #ccc;
+    padding: 25px 40px;
+    height: 90px;
+    color: #ffffff;
+    box-sizing: border-box;
+}
+
+.header-login-signup .header-limiter {
+    max-width: 1200px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+
+/* Logo */
+
+.header-login-signup .header-limiter h1 {
+    float: left;
+    font: normal 35px Cookie, Arial, Helvetica, sans-serif;
+    line-height: 40px;
+    margin: 0;
+}
+
+.header-login-signup .header-limiter h1 span {
+    color: #347eff;
+}
+
+
+/* The navigation links */
+
+.header-login-signup .header-limiter a {
+    color: #333333;
+    text-decoration: none;
+}
+
+.header-login-signup .header-limiter nav {
+    font: 16px Arial, Helvetica, sans-serif;
+    line-height: 40px;
+    float: left;
+    margin: 0 0 0 20px;
+    padding: 0;
+}
+
+.header-login-signup .header-limiter nav a {
+    font-size: 16px;
+    font-weight: bold;
+    font-family: sans-serif;
+    display: inline-block;
+    padding: 0 5px;
+    padding-left: 20px;
+    text-decoration: none;
+    line-height: 1;
+}
+
+.header-login-signup .header-limiter nav a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    margin-top: 6px;
+    background: rgb(255, 56, 56);
+    transition: width .3s;
+}
+
+.header-login-signup .header-limiter nav a:hover::after {
+    width: 100%;
+    transition: width .3s;
+}
+
+
+
+@media all and (max-width: 600px) {
+    .header-login-signup {
+        padding: 25px;
+        height: 85px;
+    }
+    .header-login-signup .header-limiter h1 {
+        float: none;
+        margin: -8px 0 2px;
+        text-align: center;
+        font-size: 24px;
+        line-height: 1;
+    }
+    .header-login-signup .header-limiter nav {
+        margin: 0;
+        float: none;
+    }
+    .header-login-signup .header-limiter nav li a {
+        font-size: 13px;
+    }
+    .header-login-signup .header-limiter ul {
+        display: none;
+    }
+    .header-login-signup .header-limiter nav a {
+        font-size: 14px;
+    }
+}
